@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Implementation-Title: Gradle Quickstart
+Premain-Class: pe.kr.ddakker.monitor.agent.MonitorAgent
+Implementation-Version: 1.0-SNAPSHOT
+Agent-Class: pe.kr.ddakker.monitor.agent.MonitorAgent
+Can-Redefine-Classes: true
+
