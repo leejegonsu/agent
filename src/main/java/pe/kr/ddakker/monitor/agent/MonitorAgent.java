@@ -20,4 +20,9 @@ public class MonitorAgent {
         System.out.println("A@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@A agentmain");
         premain(args, inst);
     }
+
+    public void print(){
+        System.out.print("12345");
+    }
+
 }
