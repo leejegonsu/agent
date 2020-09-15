@@ -1,127 +1,35 @@
 -- 부동산 유저 테이블 --
-ALTER TABLE public.agents_in_users ADD user_idx int4 NULL;
-ALTER TABLE public.agents_in_users ADD CONSTRAINT agents_in_users_user_idx_fkey FOREIGN KEY (user_idx) REFERENCES public.users(idx) ON DELETE CASCADE ON UPDATE CASCADE;
-update agents_in_users
-set user_idx = (select idx from users where id = agents_in_users.user_id)
-where user_id is not null;
-ALTER TABLE public.agents_in_users ALTER COLUMN user_idx SET NOT NULL;
-CREATE INDEX agents_in_users_user_idx_index ON public.agents_in_users USING btree (user_idx);
-
+agents_in_users
 -- 비밀번호 초기화 테이블 --
-ALTER TABLE public.password_reset ADD user_idx int4 NULL;
-ALTER TABLE public.password_reset ADD CONSTRAINT password_reset_user_idx_fkey FOREIGN KEY (user_idx) REFERENCES public.users(idx) ON DELETE CASCADE ON UPDATE CASCADE;
-update password_reset
-set user_idx = (select idx from users where id = password_reset.user_id)
-where user_id is not null;
-ALTER TABLE public.password_reset ALTER COLUMN user_idx SET NOT NULL;
-CREATE INDEX password_reset_user_idx_index ON public.password_reset USING btree (user_idx);
-
+password_reset
 -- 결재 카드정보 테이블 --
-ALTER TABLE public.regular_payment_card ADD user_idx int4 NULL;
-ALTER TABLE public.regular_payment_card ADD CONSTRAINT regular_payment_card_user_idx_fkey FOREIGN KEY (user_idx) REFERENCES public.users(idx) ON DELETE CASCADE ON UPDATE CASCADE;
-update regular_payment_card
-set user_idx = (select idx from users where id = regular_payment_card.user_id)
-where user_id is not null;
-ALTER TABLE public.regular_payment_card ALTER COLUMN user_idx SET NOT NULL;
-CREATE INDEX regular_payment_card_user_idx_index ON public.regular_payment_card USING btree (user_idx);
-
+regular_payment_card
 -- 결재 카드 주문정보 테이블 --
-ALTER TABLE public.regular_payment_order ADD user_idx int4 NULL;
-ALTER TABLE public.regular_payment_order ADD CONSTRAINT regular_payment_order_user_idx_fkey FOREIGN KEY (user_idx) REFERENCES public.users(idx) ON DELETE CASCADE ON UPDATE CASCADE;
-update regular_payment_order
-set user_idx = (select idx from users where id = regular_payment_order.user_id)
-where user_id is not null;
---ALTER TABLE public.regular_payment_order ALTER COLUMN user_idx SET NOT NULL;
-CREATE INDEX regular_payment_order_user_idx_index ON public.regular_payment_order USING btree (user_idx);
-
+regular_payment_order
 -- 허위매물 신고 테이블 --
-ALTER TABLE public.report ADD user_idx int4 NULL;
-ALTER TABLE public.report ADD CONSTRAINT report_user_idx_fkey FOREIGN KEY (user_idx) REFERENCES public.users(idx) ON DELETE CASCADE ON UPDATE CASCADE;
-update report
-set user_idx = (select idx from users where id = report.user_id)
-where user_id is not null;
---ALTER TABLE public.report ALTER COLUMN user_idx SET NOT NULL;
-CREATE INDEX report_user_idx_index ON public.report USING btree (user_idx);
-
-select * from room_confirm_request;
+report
 -- 확인매물 요청 테이블--
-ALTER TABLE public.room_confirm_request ADD requester_idx int4 NULL;
-ALTER TABLE public.room_confirm_request ADD CONSTRAINT room_confirm_request_user_idx_fkey FOREIGN KEY (requester_idx) REFERENCES public.users(idx) ON DELETE CASCADE ON UPDATE CASCADE;
-update room_confirm_request
-set requester_idx = (select idx from users where id = room_confirm_request.requester)
-where requester is not null;
---ALTER TABLE public.room_confirm_request ALTER COLUMN user_idx SET NOT NULL;
-CREATE INDEX room_confirm_request_user_idx_index ON public.room_confirm_request USING btree (requester_idx);
-
+room_confirm_request
 -- 방 찜하기 테이블 --
-ALTER TABLE public.room_info_favorite ADD user_idx int4 NULL;
-ALTER TABLE public.room_info_favorite ADD CONSTRAINT room_info_favorite_user_idx_fkey FOREIGN KEY (user_idx) REFERENCES public.users(idx) ON DELETE CASCADE ON UPDATE CASCADE;
-update room_info_favorite
-set user_idx = (select idx from users where id = room_info_favorite.user_id)
-where user_id is not null;
-ALTER TABLE public.room_info_favorite ALTER COLUMN user_idx SET NOT NULL;
-CREATE INDEX room_info_favorite_user_idx_index ON public.room_info_favorite USING btree (user_idx);
-
-select * from room_info;
-
+room_info_favorite
 -- 방 정보 테이블 --
-ALTER TABLE public.room_info ADD user_idx int4 NULL;
-ALTER TABLE public.room_info ADD CONSTRAINT room_info_user_idx_fkey FOREIGN KEY (user_idx) REFERENCES public.users(idx) ON DELETE CASCADE ON UPDATE CASCADE;
-update room_info
-set user_idx = (select idx from users where id = room_info.user_id)
-where user_id is not null;
-ALTER TABLE public.room_info ALTER COLUMN user_idx SET NOT NULL;
-CREATE INDEX room_info_user_idx_index ON public.room_info USING btree (user_idx);
-
+room_info
 
 -- 안심번호 요청 테이블 requester?? 컬럼명 --
-ALTER TABLE public.safe_auth_request ADD user_idx int4 NULL;
-ALTER TABLE public.safe_auth_request ADD CONSTRAINT safe_auth_request_user_idx_fkey FOREIGN KEY (user_idx) REFERENCES public.users(idx) ON DELETE CASCADE ON UPDATE CASCADE;
-update safe_auth_request
-set user_idx = (select idx from users where id = safe_auth_request.requester)
-where requester is not null;
-ALTER TABLE public.safe_auth_request ALTER COLUMN user_idx SET NOT NULL;
-CREATE INDEX safe_auth_request_user_idx_index ON public.safe_auth_request USING btree (user_idx);
-
-select * from safen;
+safe_auth_request
 -- 안심번호 테이블 --
-ALTER TABLE public.safen ADD user_idx int4 NULL;
-ALTER TABLE public.safen ADD CONSTRAINT safen_user_idx_fkey FOREIGN KEY (user_idx) REFERENCES public.users(idx) ON DELETE CASCADE ON UPDATE CASCADE;
-update safen
-set user_idx = (select idx from users where id = safen.user_id)
-where user_id is not null;
---ALTER TABLE public.safen ALTER COLUMN user_idx SET NOT NULL;
-CREATE INDEX safen_user_idx_index ON public.safen USING btree (user_idx);
-
+safen
 -- 사용자 푸시정보 테이블 --
-ALTER TABLE public.users_push_info ADD user_idx int4 NULL;
-ALTER TABLE public.users_push_info ADD CONSTRAINT users_push_info_user_idx_fkey FOREIGN KEY (user_idx) REFERENCES public.users(idx) ON DELETE CASCADE ON UPDATE CASCADE;
-update users_push_info
-set user_idx = (select idx from users where id = users_push_info.user_id)
-where user_id is not null;
-ALTER TABLE public.users_push_info ALTER COLUMN user_idx SET NOT NULL;
-CREATE INDEX users_push_info_user_idx_index ON public.users_push_info USING btree (user_idx);
-
+users_push_info
 -- 유저 토큰 테이블 (토큰값??) --
-ALTER TABLE public.users_token ADD user_idx int4 NULL;
-ALTER TABLE public.users_token ADD CONSTRAINT users_token_user_idx_fkey FOREIGN KEY (user_idx) REFERENCES public.users(idx) ON DELETE CASCADE ON UPDATE CASCADE;
-update users_token
-set user_idx = (select idx from users where id = users_token.user_id)
-where user_id is not null;
-ALTER TABLE public.users_token ALTER COLUMN user_idx SET NOT NULL;
-CREATE INDEX users_token_user_idx_index ON public.users_token USING btree (user_idx);
-
+users_token
 -- 부동산 리뷰 테이블 --
-ALTER TABLE public.agent_review ADD user_idx int4 NULL;
-ALTER TABLE public.agent_review ADD comment_user_idx int4 NULL;
-ALTER TABLE public.agent_review ADD CONSTRAINT agent_review_user_idx_fkey FOREIGN KEY (user_idx) REFERENCES public.users(idx) ON DELETE CASCADE ON UPDATE CASCADE;
-ALTER TABLE public.agent_review ADD CONSTRAINT agent_review_comment_user_idx_fkey FOREIGN KEY (comment_user_idx) REFERENCES public.users(idx) ON DELETE CASCADE ON UPDATE CASCADE;
-update agent_review
-set user_idx = (select idx from users where id = agent_review.user_id)
-where user_id is not null;
-update agent_review
-set comment_user_idx = (select idx from users where id = agent_review.comment_user_id)
-where comment_user_id is not null;
-ALTER TABLE public.agent_review ALTER COLUMN user_idx SET NOT NULL;
-CREATE INDEX agent_review_user_idx_index ON public.agent_review USING btree (user_idx);
-CREATE INDEX agent_review_comment_user_idx_index ON public.agent_review USING btree (comment_user_idx);
+agent_review
+
+select * from session_store;
+select * from payment_order;
+select * from banned;
+
+
+select * from notification;
+select * from payment_log;
