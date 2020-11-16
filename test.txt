@@ -1,6 +1,2 @@
-{"multi_room_type":[0,1,2],"selling_type":[0,1,2],"deposit_range":[0,999999],"price_range":[0,999999],"trade_range":[0,999999],"maintenance_cost_range":[0,999999],"room_size":[0,999999],"supply_space_range":[0,999999],"room_floor_multi":[1,2,3,4,5,6,7,-1,0],"division":false,"duplex":false,"room_type":[1,2],"enter_date_range":[0,999999],"parking_average_range":[0,999999],"household_num_range":[0,999999],"parking":false,"animal":false,"short_lease":false,"full_option":false,"built_in":false,"elevator":false,"balcony":false,"loan":false,"safety":false,"pano":false,"deal_type":[0,1]}
-location: [[127.0658753,37.6519324],[127.0826338,37.664554]]
-page: 1
-use_map: kakao
-version: 1
-zoom: 4
+filters: {"multi_room_type":[0,1,2],"selling_type":[0,1,2],"deposit_range":[0,999999],"price_range":[0,999999],"trade_range":[0,999999],"maintenance_cost_range":[0,999999],"room_size":[0,999999],"supply_space_range":[0,999999],"room_floor_multi":[1,2,3,4,5,6,7,-1,0],"division":false,"duplex":false,"room_type":[1,2],"enter_date_range":[0,999999],"parking_average_range":[0,999999],"household_num_range":[0,999999],"parking":false,"animal":false,"short_lease":false,"full_option":false,"built_in":false,"elevator":false,"balcony":false,"loan":false,"safety":false,"pano":false,"deal_type":[0,1]}
+location: [[126.9808596,37.5295094],[127.0007724,37.5425431]]
