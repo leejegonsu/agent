@@ -1,15 +1,36 @@
-허위매물 신고리스트 엑셀다운로드 삭제된 계정 마스킹 예외처리.
-검수반려 리스트 삭제된계정.
-제제유저관리 삭제된 계정.
-유저관리 삭제된 계정.
-
-예약관리 계정 실사용명.
-리뷰관리 삭제된 계정 확인.
-
-주소관리 연락처.
-케어센터 예약관리.
-
-계약정보 관리.
-회계/정산 관리.
-법인 회원 관리.
-126.98365697248435 37.559085441728776,126.9858755842228 37.557463933013516,126.98619280399528 37.55569801550402,126.988139375107 37.5558063467984,126.98890858904637 37.5582931743745,126.9863731994349 37.55944618528601,126.98365697248435 37.559085441728776
+SELECT replace(report_user_phone, '-', '')
+FROM (
+         SELECT
+             u.id AS report_user_id,
+             u.name AS report_user_name,
+             r.user_phone AS report_user_phone
+         FROM report_check AS rc
+                  INNER JOIN report AS r
+                             ON rc.report_seq = r.seq
+                  LEFT JOIN users AS u
+                            ON r.user_id = u.id
+                  LEFT JOIN agents_in_users AS rau
+                            ON u.id = rau.user_id
+                  LEFT JOIN agent AS a
+                            ON rau.agent_id = a.id
+                  INNER JOIN room_info AS ri
+                             ON r.room_seq = ri.seq
+                  INNER JOIN users AS ru
+                             ON ri.user_id = ru.id
+                  LEFT JOIN agents_in_users AS au
+                            ON ru.id = au.user_id
+                  LEFT JOIN agent As ra
+                            ON au.agent_id = ra.id
+                  LEFT JOIN agents_in_users AS ae
+                            ON ra.id = ae.agent_id AND ae.is_primary = true
+         WHERE (
+                   SELECT
+                       MAX(seq)
+                   FROM report_check
+                   WHERE report_seq = rc.report_seq
+               ) = rc.seq
+           and r.reward_status = 0
+           and r.by_admin = false
+           AND rc.saved_time BETWEEN '2020-09-27 15:00:00.000000' AND '2020-10-25 14:59:59.99999'
+     )AS a
+GROUP BY replace(report_user_phone, '-', '');
